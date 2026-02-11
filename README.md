@@ -25,18 +25,18 @@ Intelligent tennis video analysis core module providing pose detection, ball tra
 pip install -r requirements.txt
 ```
 
-### 基础使用
+### Basic Usage
 
 ```python
 from swing_mind import TennisAnalyzer
 
-# 创建分析器
+# Create analyzer
 analyzer = TennisAnalyzer()
 
-# 分析视频
+# Analyze video
 result = analyzer.analyze('video.mp4')
 
-# 输出结果
+# Print results
 print(result['summary'])
 ```
 
