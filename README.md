@@ -1,25 +1,25 @@
-# 🎾 Swing Mind - 网球视频分析引擎
+# 🎾 Swing Mind - Tennis Video Analysis Engine
 
-智能网球视频分析核心模块，提供姿态检测、球追踪、动作分析等功能。
+Intelligent tennis video analysis core module providing pose detection, ball tracking, and action analysis.
 
-## 项目概述
+## Overview
 
-**输入：** 网球视频 + 配置参数  
-**输出：** 结构化分析结果（JSON）+ 可视化视频（可选）
+**Input:** Tennis video + configuration parameters  
+**Output:** Structured analysis results (JSON) + annotated video (optional)
 
-## 核心功能
+## Core Features
 
-- ✅ **姿态检测**：基于 MediaPipe 的人体关键点追踪
-- 🚧 **网球追踪**：球的轨迹、速度、落点分析
-- 🚧 **球场检测**：坐标系统建立、透视变换
-- 🚧 **击球检测**：自动识别击球时刻
-- 🚧 **动作分类**：正手、反手、发球识别
-- 🚧 **参数计算**：挥拍速度、角度、身体姿态等
-- 🚧 **质量评分**：动作质量评估与建议
+- ✅ **Pose Detection**: Human keypoint tracking using MediaPipe
+- 🚧 **Ball Tracking**: Ball trajectory, speed, and landing point analysis
+- 🚧 **Court Detection**: Coordinate system establishment and perspective transformation
+- 🚧 **Shot Detection**: Automatic shot moment recognition
+- 🚧 **Action Classification**: Forehand, backhand, and serve recognition
+- 🚧 **Metrics Calculation**: Swing speed, angles, and body posture
+- 🚧 **Quality Scoring**: Action quality assessment and suggestions
 
-## 快速开始
+## Quick Start
 
-### 安装依赖
+### Installation
 
 ```bash
 pip install -r requirements.txt
@@ -40,66 +40,66 @@ result = analyzer.analyze('video.mp4')
 print(result['summary'])
 ```
 
-## 项目结构
+## Project Structure
 
 ```
 swing_mind/
-├── README.md                 # 项目说明
-├── ROADMAP.md               # 开发计划
-├── requirements.txt         # 依赖列表
-├── setup.py                 # 安装配置
-├── swing_mind/              # 核心模块
+├── README.md                 # Project documentation
+├── ROADMAP.md               # Development roadmap
+├── requirements.txt         # Dependencies
+├── setup.py                 # Installation config
+├── swing_mind/              # Core module
 │   ├── __init__.py
-│   ├── analyzer.py          # 主分析器
-│   ├── pose/                # 姿态检测模块
+│   ├── analyzer.py          # Main analyzer
+│   ├── pose/                # Pose detection module
 │   │   ├── __init__.py
-│   │   ├── detector.py      # MediaPipe 姿态检测
-│   │   └── utils.py         # 工具函数
-│   ├── ball/                # 球追踪模块
+│   │   ├── detector.py      # MediaPipe pose detection
+│   │   └── utils.py         # Utilities
+│   ├── ball/                # Ball tracking module
 │   │   ├── __init__.py
-│   │   ├── tracker.py       # 球追踪
-│   │   └── detector.py      # 球检测
-│   ├── court/               # 球场检测模块
+│   │   ├── tracker.py       # Ball tracker
+│   │   └── detector.py      # Ball detector
+│   ├── court/               # Court detection module
 │   │   ├── __init__.py
-│   │   └── detector.py      # 球场检测
-│   ├── shot/                # 击球检测模块
+│   │   └── detector.py      # Court detector
+│   ├── shot/                # Shot detection module
 │   │   ├── __init__.py
-│   │   └── detector.py      # 击球检测
-│   ├── action/              # 动作分类模块
+│   │   └── detector.py      # Shot detector
+│   ├── action/              # Action classification module
 │   │   ├── __init__.py
-│   │   └── classifier.py    # 动作分类
-│   ├── metrics/             # 参数计算模块
+│   │   └── classifier.py    # Action classifier
+│   ├── metrics/             # Metrics calculation module
 │   │   ├── __init__.py
-│   │   └── calculator.py    # 参数计算
-│   └── utils/               # 通用工具
+│   │   └── calculator.py    # Metrics calculator
+│   └── utils/               # Common utilities
 │       ├── __init__.py
-│       ├── video.py         # 视频处理
-│       └── geometry.py      # 几何计算
-├── tests/                   # 测试
+│       ├── video.py         # Video processing
+│       └── geometry.py      # Geometry calculations
+├── tests/                   # Tests
 │   ├── __init__.py
 │   ├── test_pose.py
 │   └── test_analyzer.py
-├── examples/                # 示例
+├── examples/                # Examples
 │   ├── basic_usage.py
 │   └── pose_demo.py
-└── docs/                    # 文档
+└── docs/                    # Documentation
     └── api.md
 ```
 
-## 技术栈
+## Tech Stack
 
 - **Python 3.10+**
-- **OpenCV** - 视频处理
-- **MediaPipe** - 姿态估计
-- **NumPy** - 数值计算
-- **SciPy** - 科学计算
+- **OpenCV** - Video processing
+- **MediaPipe** - Pose estimation
+- **NumPy** - Numerical computing
+- **SciPy** - Scientific computing
 
-## 开发状态
+## Development Status
 
-当前版本：**v0.1.0-alpha**  
-当前进度：**姿态检测模块开发中**
+Current version: **v0.1.0-alpha**  
+Current progress: **Pose detection module in development**
 
-详见 [ROADMAP.md](ROADMAP.md)
+See [ROADMAP.md](ROADMAP.md) for details
 
 ## License
 

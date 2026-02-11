@@ -4,7 +4,7 @@ setup(
     name="swing_mind",
     version="0.1.0",
     description="Tennis video analysis engine",
-    author="法克瓜",
+    author="raoooool",
     python_requires=">=3.10",
     packages=find_packages(),
     install_requires=[

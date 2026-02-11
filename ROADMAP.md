@@ -1,22 +1,22 @@
-# 🎾 Swing Mind - 开发路线图
+# 🎾 Swing Mind - Development Roadmap
 
-## 项目目标
+## Project Goal
 
-构建一个零训练、高性能的网球视频分析核心引擎，提供姿态检测、球追踪、动作分析等功能。
+Build a zero-training, high-performance tennis video analysis core engine providing pose detection, ball tracking, and action analysis.
 
 ---
 
-## 核心模块
+## Core Modules
 
-### 1. 姿态检测（Pose Detection）
-**技术：** MediaPipe Pose  
-**功能：**
-- 人体 33 个关键点实时追踪
-- 挥拍轨迹提取
-- 身体姿态参数（膝盖角度、肩部旋转等）
-- 动作分类基础数据
+### 1. Pose Detection
+**Technology:** MediaPipe Pose  
+**Features:**
+- Real-time tracking of 33 body keypoints
+- Swing trajectory extraction
+- Body posture parameters (knee angle, shoulder rotation, etc.)
+- Foundation data for action classification
 
-**输出：**
+**Output:**
 ```json
 {
   "keypoints": [
@@ -33,15 +33,15 @@
 
 ---
 
-### 2. 网球追踪（Ball Tracking）
-**技术：** OpenCV 颜色检测 + 运动检测  
-**功能：**
-- 实时球位置检测
-- 轨迹追踪
-- 速度计算
-- 落点预测
+### 2. Ball Tracking
+**Technology:** OpenCV color detection + motion detection  
+**Features:**
+- Real-time ball position detection
+- Trajectory tracking
+- Speed calculation
+- Landing point prediction
 
-**输出：**
+**Output:**
 ```json
 {
   "trajectory": [
@@ -55,35 +55,35 @@
 
 ---
 
-### 3. 球场检测（Court Detection）
-**技术：** 霍夫变换 + 透视变换  
-**功能：**
-- 自动检测球场边界
-- 建立坐标系统
-- 像素坐标 → 真实距离转换
-- 判断球是否出界
+### 3. Court Detection
+**Technology:** Hough transform + perspective transformation  
+**Features:**
+- Automatic court boundary detection
+- Coordinate system establishment
+- Pixel coordinates → real distance conversion
+- Out-of-bounds detection
 
-**输出：**
+**Output:**
 ```json
 {
   "court_lines": [...],
   "transform_matrix": [...],
   "real_world_coords": {
-    "ball_landing": {"x": 5.2, "y": 8.3}  // 米
+    "ball_landing": {"x": 5.2, "y": 8.3}  // meters
   }
 }
 ```
 
 ---
 
-### 4. 击球检测（Shot Detection）
-**技术：** 碰撞检测 + 球速突变  
-**功能：**
-- 自动识别击球时刻
-- 击球类型分类（正手/反手/发球/截击）
-- 视频分段（按击球切分）
+### 4. Shot Detection
+**Technology:** Collision detection + ball speed change  
+**Features:**
+- Automatic shot moment recognition
+- Shot type classification (forehand/backhand/serve/volley)
+- Video segmentation by shots
 
-**输出：**
+**Output:**
 ```json
 {
   "shots": [
@@ -100,48 +100,48 @@
 
 ---
 
-### 5. 动作分类（Action Classification）
-**技术：** 基于规则的分类引擎  
-**功能：**
-- 正手/反手/发球/截击识别
-- 动作阶段划分（准备-击球-随挥）
-- 动作特征提取
+### 5. Action Classification
+**Technology:** Rule-based classification engine  
+**Features:**
+- Forehand/backhand/serve/volley recognition
+- Action phase division (preparation-contact-follow-through)
+- Action feature extraction
 
-**规则示例：**
-- 正手：右手在身体右侧 + 向前挥动
-- 反手：右手跨过身体中线 + 向左挥动
-- 发球：手臂高举 + 向下挥动
+**Rule Examples:**
+- Forehand: Right hand on right side + forward swing
+- Backhand: Right hand crosses body centerline + left swing
+- Serve: Arm raised high + downward swing
 
 ---
 
-### 6. 参数计算（Metrics Calculation）
-**技术：** NumPy 几何计算  
-**功能：**
+### 6. Metrics Calculation
+**Technology:** NumPy geometric calculations  
+**Features:**
 
-**挥拍参数：**
-- 挥拍速度（m/s 或 km/h）
-- 挥拍角度（度）
-- 击球高度（米）
-- 随挥距离（米）
+**Swing Metrics:**
+- Swing speed (m/s or km/h)
+- Swing angle (degrees)
+- Contact height (meters)
+- Follow-through distance (meters)
 
-**身体参数：**
-- 膝盖弯曲角度
-- 重心转移
-- 肩部旋转角度
-- 步法移动距离
+**Body Metrics:**
+- Knee bend angle
+- Weight transfer
+- Shoulder rotation angle
+- Footwork movement distance
 
-**球的参数：**
-- 球速（击球前后）
-- 旋转估算（通过轨迹曲率）
-- 落点精度
-- 飞行时间
+**Ball Metrics:**
+- Ball speed (before/after contact)
+- Spin estimation (via trajectory curvature)
+- Landing accuracy
+- Flight time
 
-**输出：**
+**Output:**
 ```json
 {
   "swing_speed": 120,  // km/h
   "swing_angle": 45,
-  "contact_height": 1.2,  // 米
+  "contact_height": 1.2,  // meters
   "knee_angle": 135,
   "ball_speed_before": 60,
   "ball_speed_after": 85
@@ -150,14 +150,14 @@
 
 ---
 
-### 7. 质量评分（Quality Scoring）
-**技术：** 规则引擎 + 标准动作对比  
-**功能：**
-- 动作质量评分（0-100）
-- 各维度评分（姿态、击球点、随挥等）
-- 改进建议
+### 7. Quality Scoring
+**Technology:** Rule engine + standard action comparison  
+**Features:**
+- Action quality score (0-100)
+- Dimension-wise scoring (posture, contact point, follow-through, etc.)
+- Improvement suggestions
 
-**输出：**
+**Output:**
 ```json
 {
   "overall_score": 78,
@@ -167,156 +167,156 @@
     "follow_through": 80
   },
   "suggestions": [
-    "击球点可以再高一点",
-    "随挥动作不够完整"
+    "Contact point could be higher",
+    "Follow-through incomplete"
   ]
 }
 ```
 
 ---
 
-## 开发计划
+## Development Plan
 
-### **Phase 1: MVP（当前）**
-**时间：** Week 1-2  
-**目标：** 基础框架 + 姿态检测
+### **Phase 1: MVP (Current)**
+**Timeline:** Week 1-2  
+**Goal:** Basic framework + pose detection
 
-- [x] 项目脚手架搭建
-- [ ] MediaPipe 姿态检测集成
-- [ ] 视频读取与处理
-- [ ] 关键点可视化
-- [ ] 基础角度计算
-- [ ] 单元测试
+- [x] Project scaffolding
+- [x] MediaPipe pose detection integration
+- [x] Video reading and processing
+- [x] Keypoint visualization
+- [x] Basic angle calculation
+- [x] Unit tests
 
-**交付物：**
-- 可运行的姿态检测 demo
-- 输出关键点 JSON
-- 可视化标注视频
-
----
-
-### **Phase 2: 球追踪**
-**时间：** Week 3  
-**目标：** 网球检测与追踪
-
-- [ ] 颜色检测实现
-- [ ] 运动检测实现
-- [ ] 轨迹追踪算法
-- [ ] 速度计算
-- [ ] 击球检测（简单版）
-
-**交付物：**
-- 球追踪 demo
-- 轨迹可视化
-- 速度输出
+**Deliverables:**
+- Runnable pose detection demo
+- Keypoint JSON output
+- Annotated visualization video
 
 ---
 
-### **Phase 3: 参数计算**
-**时间：** Week 4  
-**目标：** 基础参数提取
+### **Phase 2: Ball Tracking**
+**Timeline:** Week 3  
+**Goal:** Tennis ball detection and tracking
 
-- [ ] 挥拍速度计算
-- [ ] 身体角度计算
-- [ ] 击球点检测
-- [ ] 参数聚合输出
+- [ ] Color detection implementation
+- [ ] Motion detection implementation
+- [ ] Trajectory tracking algorithm
+- [ ] Speed calculation
+- [ ] Shot detection (simple version)
 
-**交付物：**
-- 完整的参数 JSON
-- 参数可视化
-
----
-
-### **Phase 4: 球场检测**
-**时间：** Week 5  
-**目标：** 坐标系统建立
-
-- [ ] 球场线检测
-- [ ] 透视变换
-- [ ] 坐标转换
-- [ ] 出界判断
+**Deliverables:**
+- Ball tracking demo
+- Trajectory visualization
+- Speed output
 
 ---
 
-### **Phase 5: 动作分类**
-**时间：** Week 6  
-**目标：** 动作识别
+### **Phase 3: Metrics Calculation**
+**Timeline:** Week 4  
+**Goal:** Basic parameter extraction
 
-- [ ] 规则引擎设计
-- [ ] 正手/反手分类
-- [ ] 发球识别
-- [ ] 动作阶段划分
+- [ ] Swing speed calculation
+- [ ] Body angle calculation
+- [ ] Contact point detection
+- [ ] Aggregated metrics output
 
----
-
-### **Phase 6: 质量评分**
-**时间：** Week 7+  
-**目标：** 专业级分析
-
-- [ ] 评分算法设计
-- [ ] 标准动作库
-- [ ] 对比算法（DTW）
-- [ ] 改进建议生成
+**Deliverables:**
+- Complete metrics JSON
+- Metrics visualization
 
 ---
 
-## 技术选型
+### **Phase 4: Court Detection**
+**Timeline:** Week 5  
+**Goal:** Coordinate system establishment
 
-| 模块 | 技术 | 原因 | 训练需求 |
-|------|------|------|----------|
-| 姿态检测 | MediaPipe Pose | 预训练、快速、准确 | ❌ 无需训练 |
-| 球追踪 | OpenCV 颜色+运动检测 | 简单、鲁棒、CPU友好 | ❌ 无需训练 |
-| 球场检测 | 霍夫变换 | 经典算法、稳定 | ❌ 无需训练 |
-| 击球检测 | 碰撞检测 + 规则 | 实时、准确 | ❌ 无需训练 |
-| 动作分类 | 规则引擎 | 可解释、易调试 | ❌ 无需训练 |
-| 参数计算 | NumPy 几何计算 | 精确、快速 | ❌ 无需训练 |
-
-**核心原则：零训练、全预训练模型 + 传统 CV**
+- [ ] Court line detection
+- [ ] Perspective transformation
+- [ ] Coordinate conversion
+- [ ] Out-of-bounds detection
 
 ---
 
-## 性能目标
+### **Phase 5: Action Classification**
+**Timeline:** Week 6  
+**Goal:** Action recognition
 
-- **处理速度：** 5-10 FPS (CPU) / 20-30 FPS (GPU)
-- **内存占用：** < 2GB
-- **准确率：**
-  - 姿态检测：> 95%
-  - 球追踪：> 90%
-  - 击球检测：> 85%
-
----
-
-## 未来扩展
-
-### **高级功能**
-- 多角度融合
-- 3D 重建
-- 实时反馈（< 1秒延迟）
-- 对比分析（多球员）
-
-### **统计分析**
-- 热力图（移动范围、落点分布）
-- 趋势分析（疲劳度、速度衰减）
-- 比赛报告生成
-
-### **深度学习增强**
-- 训练自定义球拍检测模型
-- 动作质量评分模型
-- 战术分析
+- [ ] Rule engine design
+- [ ] Forehand/backhand classification
+- [ ] Serve recognition
+- [ ] Action phase division
 
 ---
 
-## 参考项目
+### **Phase 6: Quality Scoring**
+**Timeline:** Week 7+  
+**Goal:** Professional-level analysis
 
-- **ArtLabss/tennis-tracking** - 球追踪参考
-- **avivcaspi/TennisProject** - 综合分析参考
-- **Google MediaPipe** - 姿态估计
-- **TrackNet** - 球追踪论文实现
+- [ ] Scoring algorithm design
+- [ ] Standard action library
+- [ ] Comparison algorithm (DTW)
+- [ ] Improvement suggestion generation
 
 ---
 
-## 当前状态
+## Technology Selection
 
-**版本：** v0.1.0-alpha  
-**进度：** Phase 1 - 姿态检测开发中  
-**最后更新：** 2026-02-10
+| Module | Technology | Reason | Training Required |
+|--------|-----------|--------|-------------------|
+| Pose Detection | MediaPipe Pose | Pre-trained, fast, accurate | ❌ No training |
+| Ball Tracking | OpenCV color+motion detection | Simple, robust, CPU-friendly | ❌ No training |
+| Court Detection | Hough transform | Classic algorithm, stable | ❌ No training |
+| Shot Detection | Collision detection + rules | Real-time, accurate | ❌ No training |
+| Action Classification | Rule engine | Interpretable, easy to debug | ❌ No training |
+| Metrics Calculation | NumPy geometric calculations | Precise, fast | ❌ No training |
+
+**Core Principle: Zero training, all pre-trained models + traditional CV**
+
+---
+
+## Performance Goals
+
+- **Processing Speed:** 5-10 FPS (CPU) / 20-30 FPS (GPU)
+- **Memory Usage:** < 2GB
+- **Accuracy:**
+  - Pose detection: > 95%
+  - Ball tracking: > 90%
+  - Shot detection: > 85%
+
+---
+
+## Future Extensions
+
+### **Advanced Features**
+- Multi-angle fusion
+- 3D reconstruction
+- Real-time feedback (< 1 second latency)
+- Comparative analysis (multiple players)
+
+### **Statistical Analysis**
+- Heatmaps (movement range, landing distribution)
+- Trend analysis (fatigue, speed decay)
+- Match report generation
+
+### **Deep Learning Enhancement**
+- Train custom racket detection model
+- Action quality scoring model
+- Tactical analysis
+
+---
+
+## Reference Projects
+
+- **ArtLabss/tennis-tracking** - Ball tracking reference
+- **avivcaspi/TennisProject** - Comprehensive analysis reference
+- **Google MediaPipe** - Pose estimation
+- **TrackNet** - Ball tracking paper implementation
+
+---
+
+## Current Status
+
+**Version:** v0.1.0-alpha  
+**Progress:** Phase 1 - Pose detection in development  
+**Last Updated:** 2026-02-11
