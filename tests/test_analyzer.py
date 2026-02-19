@@ -1,7 +1,7 @@
 """
 Unit tests for analyzer
 """
-import pytest
+
 from swing_mind import TennisAnalyzer
 
 
@@ -14,8 +14,8 @@ def test_analyzer_init():
 def test_analyzer_with_config():
     """Test analyzer with custom config."""
     config = {
-        'output_video': True,
-        'fps': 30,
+        "output_video": True,
+        "fps": 30,
     }
     analyzer = TennisAnalyzer(config)
     assert analyzer.config == config

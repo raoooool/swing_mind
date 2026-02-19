@@ -22,7 +22,7 @@ Intelligent tennis video analysis core module providing pose detection, ball tra
 ### Installation
 
 ```bash
-pip install -r requirements.txt
+uv sync --dev
 ```
 
 ### Basic Usage
@@ -46,37 +46,22 @@ print(result['summary'])
 swing_mind/
 ├── README.md                 # Project documentation
 ├── ROADMAP.md               # Development roadmap
-├── requirements.txt         # Dependencies
-├── setup.py                 # Installation config
-├── swing_mind/              # Core module
-│   ├── __init__.py
-│   ├── analyzer.py          # Main analyzer
-│   ├── pose/                # Pose detection module
-│   │   ├── __init__.py
-│   │   ├── detector.py      # MediaPipe pose detection
-│   │   └── utils.py         # Utilities
-│   ├── ball/                # Ball tracking module
-│   │   ├── __init__.py
-│   │   ├── tracker.py       # Ball tracker
-│   │   └── detector.py      # Ball detector
-│   ├── court/               # Court detection module
-│   │   ├── __init__.py
-│   │   └── detector.py      # Court detector
-│   ├── shot/                # Shot detection module
-│   │   ├── __init__.py
-│   │   └── detector.py      # Shot detector
-│   ├── action/              # Action classification module
-│   │   ├── __init__.py
-│   │   └── classifier.py    # Action classifier
-│   ├── metrics/             # Metrics calculation module
-│   │   ├── __init__.py
-│   │   └── calculator.py    # Metrics calculator
-│   └── utils/               # Common utilities
+├── pyproject.toml           # Packaging and tool config
+├── requirements.txt         # Runtime dependency snapshot (optional)
+├── src/
+│   └── swing_mind/          # Core package
 │       ├── __init__.py
-│       ├── video.py         # Video processing
-│       └── geometry.py      # Geometry calculations
+│       ├── analyzer.py
+│       ├── pose/
+│       ├── ball/
+│       ├── court/
+│       ├── shot/
+│       ├── action/
+│       ├── metrics/
+│       └── utils/
 ├── tests/                   # Tests
 │   ├── __init__.py
+│   ├── conftest.py
 │   ├── test_pose.py
 │   └── test_analyzer.py
 ├── examples/                # Examples
@@ -100,6 +85,14 @@ Current version: **v0.1.0-alpha**
 Current progress: **Pose detection module in development**
 
 See [ROADMAP.md](ROADMAP.md) for details
+
+## Development Commands
+
+```bash
+uv run pytest
+uv run ruff check src tests
+uv run ruff format src tests examples
+```
 
 ## License
 
